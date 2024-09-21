@@ -1,10 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const dbConnection = require("./app/config/db");
-const session = require("express-session");
 const body_parser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const flash = require("connect-flash");
 const path = require("path");
 const cors = require("cors");
 
@@ -15,22 +13,9 @@ const app = express();
 dbConnection();
 app.use(cors());
 
-app.use(
-  session({
-    cookie: {
-      maxAge: 60000,
-    },
-    secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
 app.use(cookieParser());
-app.use(flash());
 
 // flash message
-const { globalMessage } = require("./app/module/user/middleware/helper");
-app.use(globalMessage);
 //setting ejs
 app.set("view engine", "ejs");
 app.set("views", [
