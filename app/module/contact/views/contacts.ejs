@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Contacts</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      
+     <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Contacts</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/contacts">Contacts</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+      <div class="table-container mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Date</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <% contacts.forEach(contact => { %>
+              <tr>
+                <td><%= contact.name %></td>
+                <td><%= contact.email %></td>
+                <td><%= contact.subject %></td>
+                <td>
+                  <i class="fa-regular fa-calendar-days text-bg-secondary"></i> <%= new Date(contact.createdAt).toLocaleDateString() %>
+                </td>
+               
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>

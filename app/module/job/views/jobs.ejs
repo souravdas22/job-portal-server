@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Jobs</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Jobs</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/jobs">Jobs</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="table-container mt-3 ">
+        <a href="/add-job" class="text-white text-decoration-none"><button class="btn btn-primary mb-2">Add New Job</button></a>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Company</th>
+              <th>Location</th>
+              <th>Posted</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+           <% jobs.forEach(job => { %>
+             <tr>
+              <td>
+               <a href="/job-details/<%= job._id %>">
+                 <img
+                  class="table-img"
+                  src="http://localhost:7000/<%= job.image %>"
+                  alt="User Image"
+                />
+                <%= job.title %>
+               </a>
+              </td>
+              <td> <%= job.company %></td>
+              <td> <%= job.location %></td>
+              <td>
+                <i class="fa-regular fa-calendar-days text-bg-secondary"></i>  <%= new Date(job.postedDate).toLocaleDateString() %>
+              </td>
+              <td class="d-flex justify-content-lg-around" >
+                 <a href="/edit-job/<%= job._id %>" class="edit-btn"> <i class="fa-regular fa-pen-to-square"></i></a>
+                <button class="delete-btn">
+                  <a href="/delete-job/<%= job._id %>" class="delete-btn "><i class="fa-solid fa-trash text-white"></i></a>
+                </button>
+              </td>
+            </tr>
+           <% }) %>
+           
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>

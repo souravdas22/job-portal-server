@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Edit Page</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Edit Job</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+               <li><a href="/jobs">Jobs</a></li>
+              <li><span>»</span></li>
+              <li><a href="/edit-job/<%= job._id %>">Edit Job</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="form-container container mt-4">
+        <h2 class="form-header">Job Information</h2>
+        <form action="/update-job/<%= job._id %>" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jobTitle"
+              name="title"
+              placeholder="Enter job title"
+              value="<%= job.title %>"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="companyName">Company Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="companyName"
+                name="company"
+                placeholder="Enter company name"
+                value="<%= job.company %>"
+                required
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="category">Category</label>
+              <select class="form-control" id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="Engineering" <%= job.category === 'Engineering' ? 'selected' : '' %>>Engineering</option>
+                <option value="Software Development" <%= job.category === 'Software Development' ? 'selected' : '' %>>Software Development</option>
+                <option value="Web Development" <%= job.category === 'Web Development' ? 'selected' : '' %>>Web Development</option>
+                <option value="Mobile Development" <%= job.category === 'Mobile Development' ? 'selected' : '' %>>Mobile Development</option>
+                <option value="DevOps" <%= job.category === 'DevOps' ? 'selected' : '' %>>DevOps</option>
+                <option value="Data Engineering" <%= job.category === 'Data Engineering' ? 'selected' : '' %>>Data Engineering</option>
+                <option value="Cloud Computing" <%= job.category === 'Cloud Computing' ? 'selected' : '' %>>Cloud Computing</option>
+                <option value="Cybersecurity" <%= job.category === 'Cybersecurity' ? 'selected' : '' %>>Cybersecurity</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="location">Location</label>
+              <select class="form-control" id="location" name="location" required>
+                <option value="">Select Location</option>
+                <option value="Delhi" <%= job.location === 'Delhi' ? 'selected' : '' %>>Delhi</option>
+                <option value="Mumbai" <%= job.location === 'Mumbai' ? 'selected' : '' %>>Mumbai</option>
+                <option value="Bengaluru" <%= job.location === 'Bengaluru' ? 'selected' : '' %>>Bengaluru</option>
+                <option value="Hyderabad" <%= job.location === 'Hyderabad' ? 'selected' : '' %>>Hyderabad</option>
+                <option value="Pune" <%= job.location === 'Pune' ? 'selected' : '' %>>Pune</option>
+                <option value="Chennai" <%= job.location === 'Chennai' ? 'selected' : '' %>>Chennai</option>
+                <option value="Kolkata" <%= job.location === 'Kolkata' ? 'selected' : '' %>>Kolkata</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="noOfVacancy">No. of Vacancies</label>
+              <input
+                type="number"
+                class="form-control"
+                id="noOfVacancy"
+                name="vaccancies"
+                placeholder="Enter number of vacancies"
+                value="<%= job.vaccancies %>"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required><%= job.description %></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="salary">Salary</label>
+              <input
+                type="text"
+                class="form-control"
+                id="salary"
+                name="salary"
+                placeholder="Enter salary"
+                value="<%= job.salary %>"
+                required
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="jobType">Job Type</label>
+              <select class="form-control" id="jobType" name="jobType" required>
+                <option value="">Select Job Type</option>
+                <option value="full-time" <%= job.jobType === 'full-time' ? 'selected' : '' %>>Full-time</option>
+                <option value="part-time" <%= job.jobType === 'part-time' ? 'selected' : '' %>>Part-time</option>
+                <option value="internship" <%= job.jobType === 'internship' ? 'selected' : '' %>>Internship</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="skills">Skills (Separate with Comma)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="skills"
+              name="skills"
+              placeholder="Enter skills"
+              value="<%= job.skills.join(', ') %>"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="companyLogo">Company Logo</label>
+              <input type="file" class="form-control-file" id="companyLogo" name="image" />
+              <% if (job.image) { %>
+                <img src="/<%= job.image %>" alt="Company Logo" class="img-thumbnail mt-2" width="100" />
+              <% } %>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-1 btn-block">Submit</button>
+        </form>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('header')  %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+        <%- include('navbar')  %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+      <%- include('sidebar')  %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        </ul>
+      </div>
+
+      <!-- Dashboard Cards -->
+      <div class="row">
+        <div class="col-md-3">
+          <div class="widget-small primary coloured-icon"><i class="icon fa fa-user fa-3x"></i>
+            <div class="info">
+              <h4>Users</h4>
+              <p><b><%= users.length %></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-clock-o fa-3x"></i>
+            <div class="info">
+              <h4>Jobs</h4>
+              <p><b><%= jobs.length %></b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-download fa-3x"></i>
+            <div class="info">
+              <h4>Applications</h4>
+              <p><b><%= applications.length %></b></p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </main>
+
+    <%- include("footer")  %>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Applicaitons</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Applications</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/applications">Applicaitons</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="table-container mt-3">
+       
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Email</th>
+              <th>Location</th>
+              <th>Posted</th>
+              <th>Status</th>
+
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% applications.forEach(application => { %>
+            <tr>
+              <td>
+                <a href="/application/<%= application._id  %>">
+                  <img
+                    class="table-img"
+                    src="/<%= application?.userId?.profile_img  %>"
+                    alt="User Image"
+                  />
+                  Sourav Das
+                </a>
+                <a href="/application/<%= application._id%>" class="hazy-button"
+                  ><%= application.jobId.title %></a
+                >
+              </td>
+              <td><%= application?.userId?.email %></td>
+              <td><%= application.jobId.location %></td>
+              <td>
+                <i class="fa-regular fa-calendar-days text-bg-secondary"></i>
+                <%= new Date(application.jobId.postedDate).toLocaleDateString()
+                %>
+              </td>
+              <td
+                class="text-<%= application.status === 'accepted' ? 'success' : (application.status === 'rejected' ? 'danger' : 'default') %>"
+              >
+                <%= application.status %>
+                <span
+                  class="status-dot <%= application.status === 'accepted' ? 'success' : (application.status === 'rejected' ? 'danger' : 'default') %>"
+                ></span>
+              </td>
+
+              <td class="d-flex justify-content-lg-around align-items-center">
+                <a href="/application/accept/<%= application._id%>"
+                  ><i class="fa-regular fa-thumbs-up"></i
+                ></a>
+                <a href="/application/reject/<%= application._id%>"
+                  ><i class="fa-regular fa-thumbs-down text-danger"></i
+                ></a>
+
+                <a
+                  href="/application/<%= application._id  %>"
+                  class="p-3 text-decoration-underline text-dark"
+                  >view></a
+                >
+                <!-- <a href="/admin/edit-job" class="edit-btn"> <i class="fa-regular fa-pen-to-square"></i></a> -->
+                <!-- <button class="delete-btn">
+                  <i class="fa-solid fa-trash"></i>
+                </button> -->
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Add Page</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Add Job</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/jobs">Jobs</a></li>
+              <li><span>»</span></li>
+              <li><a href="/add-job">Add Job</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="form-container container mt-4">
+        <h2 class="form-header">Job Information</h2>
+        <form
+          action="/create-job"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <label for="jobTitle">Job Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="jobTitle"
+              name="title"
+              placeholder="Enter job title"
+            />
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="companyName">Company Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="companyName"
+                name="company"
+                placeholder="Enter company name"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="category">Category</label>
+              <select class="form-control" id="category" name="category">
+                <option value="">Select Category</option>
+                <option>Software Development</option>
+                <option>Web Development</option>
+                <option>Mobile Development</option>
+                <option>DevOps</option>
+                <option>Data Engineering</option>
+                <option>Cloud Computing</option>
+                <option>Cybersecurity</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="location">Location</label>
+              <select class="form-control" id="location" name="location">
+                <option value="">Select Location</option>
+                <option>Delhi</option>
+                <option>Mumbai</option>
+                <option>Bengaluru</option>
+                <option>Hyderabad</option>
+                <option>Pune</option>
+                <option>Chennai</option>
+                <option>Kolkata</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="noOfVacancy">No. of Vacancies</label>
+              <input
+                type="number"
+                class="form-control"
+                id="noOfVacancy"
+                name="vaccancies"
+                placeholder="Enter number of vacancies"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              class="form-control"
+              id="description"
+              name="description"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="salary">Salary</label>
+              <input
+                type="text"
+                class="form-control"
+                id="salary"
+                name="salary"
+                placeholder="Enter salary"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="jobType">Job Type</label>
+              <select class="form-control" id="jobType" name="jobType">
+                <option value="">Select Job Type</option>
+                <option value="full-time">Full-time</option>
+                <option value="part-time">Part-time</option>
+                <option value="internship">Internship</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="skills">Skills (Separate with Comma)</label>
+            <input
+              type="text"
+              class="form-control"
+              id="skills"
+              name="skills"
+              placeholder="Enter skills"
+            />
+          </div>
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="companyLogo">Company Logo</label>
+              <input
+                type="file"
+                class="form-control-file"
+                id="companyLogo"
+                name="image"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-1 btn-block">
+            Submit
+          </button>
+        </form>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>

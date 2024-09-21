@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+  <body>
+    <div style="height: 100vh">
+      <div class="banner mx-0 position-relative mt-5">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Login</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/admin/manage-job">Login</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-4 mx-auto mt-4">
+        <h2 class="title text-center">Login Form</h2>
+        <div class="form">
+          <form action="/admin/login" method="POST">
+            <div class="inputfield">
+              <label>Email Address</label>
+              <input type="text" name="email" class="input" required />
+            </div>
+            <div class="inputfield">
+              <label>Password</label>
+              <input type="password" name="password" class="input" required />
+            </div>
+            <p style="text-align: end">
+              Don't have an account? <a href="/admin/register">Register</a>
+            </p>
+            <div class="inputfield">
+              <button class="btn btn-success" type="submit">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

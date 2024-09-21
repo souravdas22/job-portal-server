@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('header') %>
+
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <%- include('navbar') %>
+
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <%- include('sidebar') %>
+
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1>Application Details</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="banner mx-0 position-relative">
+        <img
+          class="add-job-banner"
+          src="/admin_assets/images/single_page_header.png"
+          alt="banner"
+        />
+        <div class="banner-text">
+          <h1 class="text-white">Application Details</h1>
+          <nav aria-label="Breadcrumb">
+            <ul>
+              <li><a href="/admin">Dashboard</a></li>
+              <li><span>»</span></li>
+              <li><a href="/admin/manage-job">Manage Applications</a></li>
+              <li><span>»</span></li>
+              <li><a href="/admin/application/<%= application._id%>">Application Details</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-8 border border-3 border-black">
+            <div class="row">
+              <div
+                class="col-5 p-5 shadow-sm d-flex flex-column align-items-center justify-content-around"
+              >
+                <img
+                  src="/<%= application.userId.profile_img  %>"
+                  class="h-50 w-50 rounded-circle"
+                  alt="candidate"
+                />
+                <a href="" class="hazy-button my-1"><%= application.userId.name  %></a>
+                <p class="my-1"><%= application.jobId.title  %></p>
+              </div>
+              <div class="col-7 shadow-sm p-4">
+                <P><i class="fa-solid fa-wallet mr-2"></i>Salary: <%= application.jobId.salary  %></P>
+                <i class="fa-solid fa-envelope mr-2"></i>email: <%= application.userId.email %></P>
+                <P><i class="fa-solid fa-calendar-days mr-2"></i>Job Type: <%= application.jobId.jobType  %></P>
+                <P><i class="fa-regular fa-user mr-2"></i>Openings: <%= application.jobId.vaccancies  %> </P>
+                 <p class="">
+                  <% application.jobId.skills.forEach(skill => { %>
+                   <span class="mr-1 hazy-badge "><%= skill  %> </span> 
+                  <% }) %>
+                </p>
+              </div>
+            </div>
+            <div class="description mt-3 shadow-sm">
+              <h3 class="p-3 bg-dark text-white">Cover Letter</h3>
+              <p class="p-4">
+                <%= application.coverLetter %>
+              </p>
+            </div>
+           
+          </div>
+          <div class="col-4 shadow-sm p-4">
+            <div class="d-flex justify-content-start align-items-center">
+              <h3 class="text-center mx-auto">CV</h3>
+            </div>
+            <hr />
+            <div>
+             <embed src="/<%= application.resume%>" type="application/pdf" width="100%" height="470" />
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include("footer") %>
+  </body>
+</html>
