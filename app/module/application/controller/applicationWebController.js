@@ -6,12 +6,14 @@ class ApplicationWebController {
     try {
       const token = req.cookies.token || req.user;
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded)
       const user = await applicationRepo.findUserById(decoded.id);
       const applications = await applicationRepo.getApplications();
 
       if (!applications) {
         return res.send("Application not found");
       }
+      console.log(user)
       res.render("application", {
         applications: applications,
         token: token,
